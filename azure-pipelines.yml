@@ -9,7 +9,11 @@ trigger:
 pool:
   myTestVm
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: One
+  steps:
+  - script: echo First step!
+- job: Two
+  steps:
+  - script: echo Second step!
 
