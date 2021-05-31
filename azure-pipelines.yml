@@ -17,3 +17,10 @@ jobs:
   steps:
   - script: echo Second step!
 
+jobs:
+- job: 3
+  steps:
+  - script: echo First step!
+- job: 4
+  steps:
+  - script: echo Second step!
