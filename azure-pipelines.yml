@@ -1,7 +1,7 @@
 trigger:
 - master
 pool:
-  vmImage: 'ubuntu-latest'
+  myTestVm
 jobs:
 - job: ParallelA
   steps:
