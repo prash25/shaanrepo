@@ -1,22 +1,24 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
-
+- main
 pool:
-  myTestVm
-
-stages:
-- stage: A
-  jobs:
-  - job: A1
-    steps:
-    - script: echo First step!  
-- stage: B
-  jobs:
-  - job: B1
-    steps:
-    - script: echo Second step! 
+  vmImage: 'ubuntu-latest'
+jobs:
+- job: ParallelA
+  steps:
+  - bash: sleep 25
+    displayName: 'Sleep for 25 seconds'
+  - bash: echo Hello from parallel job A
+    displayName: 'Run a one-line script'
+- job: ParallelB
+  steps:
+  - bash: sleep 20
+    displayName: 'Sleep for 20seconds'
+  - bash: echo Hello from parallel job B
+    displayName: 'Run a one-line script'
+- job: Final
+  dependsOn:
+  - ParallelA
+  - ParallelB
+  steps:
+  - script: echo Hello from final job
+    displayName: 'Run a one-line script'
